@@ -72,12 +72,25 @@ router.get('/courses', asyncHandler(async(req,res)=>{
 router.get('/courses/:id', asyncHandler(async(req,res)=>{
 
   const course = await Course.findOne({
+    attributes: {
+      exclude: [
+        'createdAt',
+        'updatedAt'
+      ]
+    },
     where: {
       id: req.params.id
     },
     include: [{
       model: User,
       as: 'user',
+      attributes: {
+        exclude: [
+          'password',
+          'createdAt',
+          'updatedAt'
+        ]
+      },
     }],
   });
 
