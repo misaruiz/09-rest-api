@@ -90,7 +90,7 @@ router.get('/courses/:id', asyncHandler(async(req,res)=>{
 
 }));
 
-// Route that will create a new course
+// Route that will create a new course 
 router.post('/courses', authenticateUser, async(req,res)=>{
   try {
     const course = await Course.create(req.body);
